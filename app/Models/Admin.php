@@ -2,19 +2,18 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
-
-class User extends Authenticatable
+class Admin extends Model
 {
-    /*
+        /*
     |--------------------------------------------------------------------------
     | GLOBAL VARIABLES
     |--------------------------------------------------------------------------
     */
 
-    // protected $table = 'users';
+    // protected $table = 'admins';
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     // protected $guarded = [];
@@ -22,8 +21,6 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'address',
-        'phone_number',
         // Otros campos...
     ];
 

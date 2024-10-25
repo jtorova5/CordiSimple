@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -16,6 +17,7 @@ class DatabaseSeeder extends Seeder
         $this->call(UserSeeder::class);
         $this->call(AdminSeeder::class);
         $this->call(EventSeeder::class);
+        $this->call(ReservationSeeder::class);
         // User::factory(10)->create();
 
         User::factory()->create([

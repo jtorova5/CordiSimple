@@ -4,26 +4,23 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Event extends Model
+class Reservation extends Model
 {
-    /*
+        /*
     |--------------------------------------------------------------------------
     | GLOBAL VARIABLES
     |--------------------------------------------------------------------------
     */
 
-    // protected $table = 'events';
+    // protected $table = 'reservations';
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     // protected $guarded = [];
     protected $fillable = [
-        'name',
-        'description',
-        'date',
-        'location',
-        'max_capacity',
-        'sold',
-        'admin_id',
+        'status',
+        'location_quantity',
+        'event_id',
+        'user_id'
         // Otros campos...
     ];
 
@@ -42,9 +39,9 @@ class Event extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
-        public function admin()
+        public function reservation()
         {
-            return $this->belongsTo(Admin::class);
+            return $this->belongsTo(Reservation::class);
         }
     /*
     |--------------------------------------------------------------------------

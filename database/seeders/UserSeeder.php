@@ -1,0 +1,128 @@
+<?php
+
+namespace Database\Seeders;
+
+use App\Models\User;
+use Illuminate\Database\Seeder;
+
+class UserSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     */
+    public function run(): void
+    {
+        $users = [
+            ['name' => 'Juan Pérez', 'email' => 'juan.perez@example.com', 'password' => bcrypt('password'), 'address' => 'Calle Falsa 123', 'phone_number' => '555-0001'],
+            ['name' => 'María López', 'email' => 'maria.lopez@example.com', 'password' => bcrypt('password'), 'address' => 'Avenida Siempre Viva 742', 'phone_number' => '555-0002'],
+            ['name' => 'Carlos García', 'email' => 'carlos.garcia@example.com', 'password' => bcrypt('password'), 'address' => 'Paseo de la Reforma 300', 'phone_number' => '555-0003'],
+            ['name' => 'Ana Martínez', 'email' => 'ana.martinez@example.com', 'password' => bcrypt('password'), 'address' => 'Boulevard de los Insurgentes 456', 'phone_number' => '555-0004'],
+            ['name' => 'Luis Fernández', 'email' => 'luis.fernandez@example.com', 'password' => bcrypt('password'), 'address' => 'Calle 123', 'phone_number' => '555-0005'],
+            ['name' => 'Laura Rodríguez', 'email' => 'laura.rodriguez@example.com', 'password' => bcrypt('password'), 'address' => 'Calle de la Amargura 10', 'phone_number' => '555-0006'],
+            ['name' => 'Pedro Jiménez', 'email' => 'pedro.jimenez@example.com', 'password' => bcrypt('password'), 'address' => 'Plaza de la Paz 20', 'phone_number' => '555-0007'],
+            ['name' => 'Isabel Torres', 'email' => 'isabel.torres@example.com', 'password' => bcrypt('password'), 'address' => 'Avenida de los Ángeles 35', 'phone_number' => '555-0008'],
+            ['name' => 'Jorge Romero', 'email' => 'jorge.romero@example.com', 'password' => bcrypt('password'), 'address' => 'Calle de la Libertad 80', 'phone_number' => '555-0009'],
+            ['name' => 'Sofía Morales', 'email' => 'sofia.morales@example.com', 'password' => bcrypt('password'), 'address' => 'Calle del Olvido 50', 'phone_number' => '555-0010'],
+            ['name' => 'Fernando Ruiz', 'email' => 'fernando.ruiz@example.com', 'password' => bcrypt('password'), 'address' => 'Calle de los Héroes 1', 'phone_number' => '555-0011'],
+            ['name' => 'Claudia Gómez', 'email' => 'claudia.gomez@example.com', 'password' => bcrypt('password'), 'address' => 'Calle del Bosque 22', 'phone_number' => '555-0012'],
+            ['name' => 'Andrés Díaz', 'email' => 'andres.diaz@example.com', 'password' => bcrypt('password'), 'address' => 'Calle del Sol 99', 'phone_number' => '555-0013'],
+            ['name' => 'Patricia Hernández', 'email' => 'patricia.hernandez@example.com', 'password' => bcrypt('password'), 'address' => 'Avenida del Mar 11', 'phone_number' => '555-0014'],
+            ['name' => 'Ricardo Castro', 'email' => 'ricardo.castro@example.com', 'password' => bcrypt('password'), 'address' => 'Calle de la Luna 44', 'phone_number' => '555-0015'],
+            ['name' => 'Teresa Romero', 'email' => 'teresa.romero@example.com', 'password' => bcrypt('password'), 'address' => 'Calle de la Estrella 88', 'phone_number' => '555-0016'],
+            ['name' => 'Javier Mendoza', 'email' => 'javier.mendoza@example.com', 'password' => bcrypt('password'), 'address' => 'Avenida de la Esperanza 20', 'phone_number' => '555-0017'],
+            ['name' => 'Lucía Torres', 'email' => 'lucia.torres@example.com', 'password' => bcrypt('password'), 'address' => 'Calle de los Pinos 12', 'phone_number' => '555-0018'],
+            ['name' => 'Ángel Ríos', 'email' => 'angel.rios@example.com', 'password' => bcrypt('password'), 'address' => 'Plaza del Centenario 55', 'phone_number' => '555-0019'],
+            ['name' => 'Cecilia León', 'email' => 'cecilia.leon@example.com', 'password' => bcrypt('password'), 'address' => 'Calle del Río 33', 'phone_number' => '555-0020'],
+            ['name' => 'Sergio Ortiz', 'email' => 'sergio.ortiz@example.com', 'password' => bcrypt('password'), 'address' => 'Calle de la Sombra 28', 'phone_number' => '555-0021'],
+            ['name' => 'Vanessa Silva', 'email' => 'vanessa.silva@example.com', 'password' => bcrypt('password'), 'address' => 'Avenida de los Tilos 70', 'phone_number' => '555-0022'],
+            ['name' => 'Diego Castillo', 'email' => 'diego.castillo@example.com', 'password' => bcrypt('password'), 'address' => 'Calle de la Palma 90', 'phone_number' => '555-0023'],
+            ['name' => 'Nadia Rivas', 'email' => 'nadia.rivas@example.com', 'password' => bcrypt('password'), 'address' => 'Calle de los Jardines 5', 'phone_number' => '555-0024'],
+            ['name' => 'Martín Aguirre', 'email' => 'martin.aguirre@example.com', 'password' => bcrypt('password'), 'address' => 'Avenida del Futuro 100', 'phone_number' => '555-0025'],
+            ['name' => 'Elena Salazar', 'email' => 'elena.salazar@example.com', 'password' => bcrypt('password'), 'address' => 'Calle de la Esperanza 200', 'phone_number' => '555-0026'],
+            ['name' => 'Esteban Peña', 'email' => 'esteban.pena@example.com', 'password' => bcrypt('password'), 'address' => 'Calle de los Abetos 12', 'phone_number' => '555-0027'],
+            ['name' => 'Gabriela Castro', 'email' => 'gabriela.castro@example.com', 'password' => bcrypt('password'), 'address' => 'Avenida del Sol 33', 'phone_number' => '555-0028'],
+            ['name' => 'Hugo Sandoval', 'email' => 'hugo.sandoval@example.com', 'password' => bcrypt('password'), 'address' => 'Calle de la Cereza 22', 'phone_number' => '555-0029'],
+            ['name' => 'Silvia Paredes', 'email' => 'silvia.paredes@example.com', 'password' => bcrypt('password'), 'address' => 'Avenida del Oro 45', 'phone_number' => '555-0030'],
+            ['name' => 'Alberto Morales', 'email' => 'alberto.morales@example.com', 'password' => bcrypt('password'), 'address' => 'Calle de la Paz 67', 'phone_number' => '555-0031'],
+            ['name' => 'Patricia León', 'email' => 'patricia.leon@example.com', 'password' => bcrypt('password'), 'address' => 'Calle de las Flores 77', 'phone_number' => '555-0032'],
+            ['name' => 'Fernando Alvarado', 'email' => 'fernando.alvarado@example.com', 'password' => bcrypt('password'), 'address' => 'Avenida de la Libertad 99', 'phone_number' => '555-0033'],
+            ['name' => 'Mariana Gómez', 'email' => 'mariana.gomez@example.com', 'password' => bcrypt('password'), 'address' => 'Calle de la Esperanza 120', 'phone_number' => '555-0034'],
+            ['name' => 'Roberto Ruiz', 'email' => 'roberto.ruiz@example.com', 'password' => bcrypt('password'), 'address' => 'Calle de la Esperanza 134', 'phone_number' => '555-0035'],
+            ['name' => 'Ana Castro', 'email' => 'ana.castro@example.com', 'password' => bcrypt('password'), 'address' => 'Calle de los Abetos 48', 'phone_number' => '555-0036'],
+            ['name' => 'Daniela Méndez', 'email' => 'daniela.mendez@example.com', 'password' => bcrypt('password'), 'address' => 'Avenida de la Primavera 19', 'phone_number' => '555-0037'],
+            ['name' => 'Ramón Medina', 'email' => 'ramon.medina@example.com', 'password' => bcrypt('password'), 'address' => 'Calle del Arroyo 90', 'phone_number' => '555-0038'],
+            ['name' => 'Verónica Córdova', 'email' => 'veronica.cordova@example.com', 'password' => bcrypt('password'), 'address' => 'Calle de la Brisa 24', 'phone_number' => '555-0039'],
+            ['name' => 'Adrián Morales', 'email' => 'adrian.morales@example.com', 'password' => bcrypt('password'), 'address' => 'Calle del Valle 31', 'phone_number' => '555-0040'],
+            ['name' => 'Natalia López', 'email' => 'natalia.lopez@example.com', 'password' => bcrypt('password'), 'address' => 'Avenida de los Ángeles 60', 'phone_number' => '555-0041'],
+            ['name' => 'Patricio Salas', 'email' => 'patricio.salas@example.com', 'password' => bcrypt('password'), 'address' => 'Calle del Horizonte 72', 'phone_number' => '555-0042'],
+            ['name' => 'Guadalupe Vargas', 'email' => 'guadalupe.vargas@example.com', 'password' => bcrypt('password'), 'address' => 'Calle del Lirio 8', 'phone_number' => '555-0043'],
+            ['name' => 'Claudio Fernández', 'email' => 'claudio.fernandez@example.com', 'password' => bcrypt('password'), 'address' => 'Calle de la Luna 75', 'phone_number' => '555-0044'],
+            ['name' => 'Elisa Torres', 'email' => 'elisa.torres@example.com', 'password' => bcrypt('password'), 'address' => 'Avenida de los Árboles 14', 'phone_number' => '555-0045'],
+            ['name' => 'Horacio Pérez', 'email' => 'horacio.perez@example.com', 'password' => bcrypt('password'), 'address' => 'Calle del Jardín 18', 'phone_number' => '555-0046'],
+            ['name' => 'Claudia Pérez', 'email' => 'claudia.perez@example.com', 'password' => bcrypt('password'), 'address' => 'Calle de la Paz 62', 'phone_number' => '555-0047'],
+            ['name' => 'Manuel Delgado', 'email' => 'manuel.delgado@example.com', 'password' => bcrypt('password'), 'address' => 'Calle de la Sierra 101', 'phone_number' => '555-0048'],
+            ['name' => 'Carmen Mendoza', 'email' => 'carmen.mendoza@example.com', 'password' => bcrypt('password'), 'address' => 'Calle del Futuro 82', 'phone_number' => '555-0049'],
+            ['name' => 'Alma González', 'email' => 'alma.gonzalez@example.com', 'password' => bcrypt('password'), 'address' => 'Calle de la Esperanza 70', 'phone_number' => '555-0050'],
+            ['name' => 'Rafael Ortiz', 'email' => 'rafael.ortiz@example.com', 'password' => bcrypt('password'), 'address' => 'Calle de los Álamos 66', 'phone_number' => '555-0051'],
+            ['name' => 'Paola Castillo', 'email' => 'paola.castillo@example.com', 'password' => bcrypt('password'), 'address' => 'Calle de la Luz 30', 'phone_number' => '555-0052'],
+            ['name' => 'Ignacio Salazar', 'email' => 'ignacio.salazar@example.com', 'password' => bcrypt('password'), 'address' => 'Avenida de la Libertad 41', 'phone_number' => '555-0053'],
+            ['name' => 'Lucía Ríos', 'email' => 'lucia.rios@example.com', 'password' => bcrypt('password'), 'address' => 'Calle de la Amistad 32', 'phone_number' => '555-0054'],
+            ['name' => 'Felipe Serrano', 'email' => 'felipe.serrano@example.com', 'password' => bcrypt('password'), 'address' => 'Calle del Arco 51', 'phone_number' => '555-0055'],
+            ['name' => 'Bárbara Cordero', 'email' => 'barbara.cordero@example.com', 'password' => bcrypt('password'), 'address' => 'Avenida del Sol 18', 'phone_number' => '555-0056'],
+            ['name' => 'Antonio Paredes', 'email' => 'antonio.paredes@example.com', 'password' => bcrypt('password'), 'address' => 'Calle de la Rosa 77', 'phone_number' => '555-0057'],
+            ['name' => 'Verónica Aguirre', 'email' => 'veronica.aguirre@example.com', 'password' => bcrypt('password'), 'address' => 'Calle de la Nieve 10', 'phone_number' => '555-0058'],
+            ['name' => 'Eduardo González', 'email' => 'eduardo.gonzalez@example.com', 'password' => bcrypt('password'), 'address' => 'Calle de los Campos 21', 'phone_number' => '555-0059'],
+            ['name' => 'Samantha Ruiz', 'email' => 'samantha.ruiz@example.com', 'password' => bcrypt('password'), 'address' => 'Avenida de la Torre 16', 'phone_number' => '555-0060'],
+            ['name' => 'Martín Méndez', 'email' => 'martin.mendez@example.com', 'password' => bcrypt('password'), 'address' => 'Calle de la Fe 5', 'phone_number' => '555-0061'],
+            ['name' => 'Natalia Salinas', 'email' => 'natalia.salinas@example.com', 'password' => bcrypt('password'), 'address' => 'Calle de la Gloria 13', 'phone_number' => '555-0062'],
+            ['name' => 'Óscar Solano', 'email' => 'oscar.solano@example.com', 'password' => bcrypt('password'), 'address' => 'Avenida del Bosque 39', 'phone_number' => '555-0063'],
+            ['name' => 'Tania Lira', 'email' => 'tania.lira@example.com', 'password' => bcrypt('password'), 'address' => 'Calle del Tiempo 80', 'phone_number' => '555-0064'],
+            ['name' => 'Patricio Leal', 'email' => 'patricio.leal@example.com', 'password' => bcrypt('password'), 'address' => 'Calle de la Sombra 50', 'phone_number' => '555-0065'],
+            ['name' => 'Sonia Ríos', 'email' => 'sonia.rios@example.com', 'password' => bcrypt('password'), 'address' => 'Calle del Verano 100', 'phone_number' => '555-0066'],
+            ['name' => 'Emilio Serrano', 'email' => 'emilio.serrano@example.com', 'password' => bcrypt('password'), 'address' => 'Avenida de la Madera 22', 'phone_number' => '555-0067'],
+            ['name' => 'Teresa Vargas', 'email' => 'teresa.vargas@example.com', 'password' => bcrypt('password'), 'address' => 'Calle de los Abetos 80', 'phone_number' => '555-0068'],
+            ['name' => 'Ricardo Medina', 'email' => 'ricardo.medina@example.com', 'password' => bcrypt('password'), 'address' => 'Calle de la Vida 72', 'phone_number' => '555-0069'],
+            ['name' => 'Maribel Aguirre', 'email' => 'maribel.aguirre@example.com', 'password' => bcrypt('password'), 'address' => 'Calle de la Esperanza 110', 'phone_number' => '555-0070'],
+            ['name' => 'Gerardo Flores', 'email' => 'gerardo.flores@example.com', 'password' => bcrypt('password'), 'address' => 'Calle del Amanecer 45', 'phone_number' => '555-0071'],
+            ['name' => 'Claudia Moreno', 'email' => 'claudia.moreno@example.com', 'password' => bcrypt('password'), 'address' => 'Avenida de la Aurora 64', 'phone_number' => '555-0072'],
+            ['name' => 'Salvador Ruiz', 'email' => 'salvador.ruiz@example.com', 'password' => bcrypt('password'), 'address' => 'Calle de la Lluvia 15', 'phone_number' => '555-0073'],
+            ['name' => 'Evelyn Córdova', 'email' => 'evelyn.cordova@example.com', 'password' => bcrypt('password'), 'address' => 'Calle de la Serenidad 23', 'phone_number' => '555-0074'],
+            ['name' => 'Felipe Fernández', 'email' => 'felipe.fernandez@example.com', 'password' => bcrypt('password'), 'address' => 'Calle de la Tempestad 90', 'phone_number' => '555-0075'],
+            ['name' => 'Lorena Valdez', 'email' => 'lorena.valdez@example.com', 'password' => bcrypt('password'), 'address' => 'Avenida de la Libertad 88', 'phone_number' => '555-0076'],
+            ['name' => 'Diego Ortega', 'email' => 'diego.ortega@example.com', 'password' => bcrypt('password'), 'address' => 'Calle de la Historia 77', 'phone_number' => '555-0077'],
+            ['name' => 'Cecilia Vargas', 'email' => 'cecilia.vargas@example.com', 'password' => bcrypt('password'), 'address' => 'Calle de la Aurora 60', 'phone_number' => '555-0078'],
+            ['name' => 'Ernesto Quiroz', 'email' => 'ernesto.quiroz@example.com', 'password' => bcrypt('password'), 'address' => 'Calle del Acero 47', 'phone_number' => '555-0079'],
+            ['name' => 'Ángela Díaz', 'email' => 'angela.diaz@example.com', 'password' => bcrypt('password'), 'address' => 'Avenida del Desierto 19', 'phone_number' => '555-0080'],
+            ['name' => 'Héctor Ruiz', 'email' => 'hector.ruiz@example.com', 'password' => bcrypt('password'), 'address' => 'Calle de la Trinidad 100', 'phone_number' => '555-0081'],
+            ['name' => 'Mónica Gutiérrez', 'email' => 'monica.gutierrez@example.com', 'password' => bcrypt('password'), 'address' => 'Calle de la Amistad 62', 'phone_number' => '555-0082'],
+            ['name' => 'Andrés Flores', 'email' => 'andres.flores@example.com', 'password' => bcrypt('password'), 'address' => 'Avenida de los Sauces 27', 'phone_number' => '555-0083'],
+            ['name' => 'Carla González', 'email' => 'carla.gonzalez@example.com', 'password' => bcrypt('password'), 'address' => 'Calle de la Colina 33', 'phone_number' => '555-0084'],
+            ['name' => 'Julián Ortiz', 'email' => 'julian.ortiz@example.com', 'password' => bcrypt('password'), 'address' => 'Calle del Ébano 45', 'phone_number' => '555-0085'],
+            ['name' => 'Sofia Campos', 'email' => 'sofia.campos@example.com', 'password' => bcrypt('password'), 'address' => 'Calle de la Felicidad 72', 'phone_number' => '555-0086'],
+            ['name' => 'Vicente Ramírez', 'email' => 'vicente.ramirez@example.com', 'password' => bcrypt('password'), 'address' => 'Avenida de los Olivos 82', 'phone_number' => '555-0087'],
+            ['name' => 'Pamela Gálvez', 'email' => 'pamela.galvez@example.com', 'password' => bcrypt('password'), 'address' => 'Calle de la Alegría 15', 'phone_number' => '555-0088'],
+            ['name' => 'Diego Lara', 'email' => 'diego.lara@example.com', 'password' => bcrypt('password'), 'address' => 'Calle de los Cerezos 50', 'phone_number' => '555-0089'],
+            ['name' => 'Vanessa Morales', 'email' => 'vanessa.morales@example.com', 'password' => bcrypt('password'), 'address' => 'Calle de la Eternidad 99', 'phone_number' => '555-0090'],
+            ['name' => 'Fernando Ortega', 'email' => 'fernando.ortega@example.com', 'password' => bcrypt('password'), 'address' => 'Calle de la Eternidad 29', 'phone_number' => '555-0091'],
+            ['name' => 'Sabrina Peña', 'email' => 'sabrina.pena@example.com', 'password' => bcrypt('password'), 'address' => 'Calle de la Amistad 70', 'phone_number' => '555-0092'],
+            ['name' => 'Raúl Castro', 'email' => 'raul.castro@example.com', 'password' => bcrypt('password'), 'address' => 'Calle de la Prosperidad 8', 'phone_number' => '555-0093'],
+            ['name' => 'Álvaro Martínez', 'email' => 'alvaro.martinez@example.com', 'password' => bcrypt('password'), 'address' => 'Calle de la Alborada 33', 'phone_number' => '555-0094'],
+            ['name' => 'Celeste Núñez', 'email' => 'celeste.nunez@example.com', 'password' => bcrypt('password'), 'address' => 'Avenida del Río 17', 'phone_number' => '555-0095'],
+            ['name' => 'Patricia Sánchez', 'email' => 'patricia.sanchez@example.com', 'password' => bcrypt('password'), 'address' => 'Calle de la Aventura 55', 'phone_number' => '555-0096'],
+            ['name' => 'Salvador Castro', 'email' => 'salvador.castro@example.com', 'password' => bcrypt('password'), 'address' => 'Calle de la Sinfonía 98', 'phone_number' => '555-0097'],
+            ['name' => 'Elena González', 'email' => 'elena.gonzalez@example.com', 'password' => bcrypt('password'), 'address' => 'Calle de la Creatividad 75', 'phone_number' => '555-0098'],
+            ['name' => 'Diana Paredes', 'email' => 'diana.paredes@example.com', 'password' => bcrypt('password'), 'address' => 'Calle de la Sabiduría 30', 'phone_number' => '555-0099'],
+            ['name' => 'Gustavo Hernández', 'email' => 'gustavo.hernandez@example.com', 'password' => bcrypt('password'), 'address' => 'Avenida de la Dignidad 110', 'phone_number' => '555-0100'],
+        ];
+
+        foreach ($users as $user) {
+            User::firstOrCreate([
+                'name' => $user['name'],
+                'email' => $user['email'],
+                'password' => $user['password'],
+                'address' => $user['address'],
+                'phone_number' => $user['phone_number']
+            ]);
+        }
+    }
+}

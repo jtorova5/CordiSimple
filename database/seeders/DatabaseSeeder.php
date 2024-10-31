@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
         $this->call(AdminSeeder::class);
         $this->call(EventSeeder::class);
         $this->call(ReservationSeeder::class);
+        $this->call(NotificationSeeder::class);
         // User::factory(10)->create();
 
         User::factory()->create([

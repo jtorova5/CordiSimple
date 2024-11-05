@@ -43,4 +43,20 @@ Route::get('reservations/{id}/edit', [ReservationController::class, 'edit'])->na
 Route::put('reservations/{id}', [ReservationController::class, 'update'])->name('reservations.update');
 Route::delete('reservations/{id}', [ReservationController::class, 'destroy'])->name('reservations.destroy');
 
+// Solo los usuarios regulares (User) pueden ver las reservas
+Route::middleware(['auth'])->group(function () {
+    // Rutas para usuarios regulares
+    Route::middleware(['auth:web'])->group(function () {
+        Route::get('/reservations', [ReservationController::class, 'index'])->name('reservations.index');
+        // Otras rutas de usuario
+    });
+
+    // Rutas para administradores
+    Route::middleware(['auth:admin'])->group(function () {
+        Route::get('/events', [EventController::class, 'index'])->name('events.index');
+        // Otras rutas de administrador
+    });
+});
+
+
 require __DIR__ . '/auth.php';

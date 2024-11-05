@@ -23,7 +23,7 @@ Route::get('reservations/create', [ReservationController::class, 'create'])->nam
 Route::post('reservations', [ReservationController::class, 'store'])->name('reservations.store');
 Route::get('reservations/{id}', [ReservationController::class, 'show'])->name('reservations.show');
 Route::get('reservations/{id}/edit', [ReservationController::class, 'edit'])->name('reservations.edit');
-Route::put('reservations/reservation', [ReservationController::class, 'update'])->name('reservations.update');
+Route::put('reservations/{id}', [ReservationController::class, 'update'])->name('reservations.update');
 Route::delete('reservations/{id}', [ReservationController::class, 'destroy'])->name('reservations.destroy');
 
 require __DIR__ . '/auth.php';

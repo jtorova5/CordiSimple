@@ -6,7 +6,6 @@
             <form action="{{ route('reservations.update', $reservation->id) }}" method="POST" class="px-8 py-8">
                 @csrf
                 @method('PUT')
-
                 <div class="mb-4">
                     <label for="status" class="block text-gray-700 font-bold mb-2">Estado:</label>
                     <select name="status" id="status"

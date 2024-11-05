@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ReservationController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -33,5 +34,12 @@ Route::get('events/{id}/edit', [EventController::class, 'edit'])->name('events.e
 Route::put('events/{id}', [EventController::class, 'update'])->name('events.update');
 Route::delete('events/{id}', [EventController::class, 'destroy'])->name('events.destroy');
 
+Route::get('reservations', [ReservationController::class, 'index'])->name('reservations.index');
+Route::get('reservations/create', [ReservationController::class, 'create'])->name('reservations.create');
+Route::post('reservations', [ReservationController::class, 'store'])->name('reservations.store');
+Route::get('reservations/{id}', [ReservationController::class, 'show'])->name('reservations.show');
+Route::get('reservations/{id}/edit', [ReservationController::class, 'edit'])->name('reservations.edit');
+Route::put('reservations/reservation', [ReservationController::class, 'update'])->name('reservations.update');
+Route::delete('reservations/{id}', [ReservationController::class, 'destroy'])->name('reservations.destroy');
 
-require __DIR__.'/auth.php';    
+require __DIR__ . '/auth.php';

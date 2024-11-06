@@ -47,13 +47,11 @@ Route::middleware(['auth'])->group(function () {
     // Rutas para usuarios regulares
     Route::middleware(['auth:web'])->group(function () {
         Route::get('/reservations', [ReservationController::class, 'index'])->name('reservations.index');
-        // Otras rutas de usuario
     });
 
     // Rutas para administradores
     Route::middleware(['auth:admin'])->group(function () {
         Route::get('/events', [EventController::class, 'index'])->name('events.index');
-        // Otras rutas de administrador
     });
 });
 

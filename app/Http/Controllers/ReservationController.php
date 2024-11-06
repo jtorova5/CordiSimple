@@ -57,6 +57,7 @@ class ReservationController extends Controller
      */
     public function edit(string $id)
     {
+        $reservation = Reservation::findOrFail($id);
         return view('reservations.edit', compact('reservation'));
     }
 

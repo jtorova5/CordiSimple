@@ -34,7 +34,6 @@ Route::get('events/{id}/edit', [EventController::class, 'edit'])->name('events.e
 Route::put('events/{id}', [EventController::class, 'update'])->name('events.update');
 Route::delete('events/{id}', [EventController::class, 'destroy'])->name('events.destroy');
 
-
 Route::get('reservations', [ReservationController::class, 'index'])->name('reservations.index');
 Route::get('reservations/create', [ReservationController::class, 'create'])->name('reservations.create');
 Route::post('reservations', [ReservationController::class, 'store'])->name('reservations.store');

@@ -15,7 +15,7 @@ class AuthenticatedSessionController extends Controller
     /**
      * Display the login view.
      */
-    public function showLoginForm(): View
+    public function create(): View
     {
         return view('auth.login'); // Vista común de login
     }
@@ -23,7 +23,7 @@ class AuthenticatedSessionController extends Controller
     /**
      * Handle an incoming authentication request.
      */
-    public function login(Request $request)
+    public function store(Request $request)
     {
         // Validar los datos de inicio de sesión
         $request->validate([
@@ -54,12 +54,12 @@ class AuthenticatedSessionController extends Controller
     /**
      * Destroy an authenticated session.
      */
-    public function logout()
+    public function destroy()
     {
         // Logout para ambos tipos de usuario
         Auth::guard('web')->logout();
         Auth::guard('admin')->logout();
-        return redirect()->route('login'); // Redirigir al login después de cerrar sesión
+        return redirect()->route('welcome'); // Redirigir al dashboard después de cerrar sesión
     }
 }
 

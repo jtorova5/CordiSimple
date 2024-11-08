@@ -12,57 +12,63 @@
             </div>
         @endif
 
-        <h1 class="text-3xl font-bold text-center text-gray-800 mb-6">Lista de Reservas</h1>
-
-        <div class="flex justify-end mb-4">
+        <div class="flex justify-center">
+            <h1 class="text-4xl font-extrabold text-gray-800 mb-6 p-4 rounded-lg shadow-xl bg-blue-50 inline-block border-2">
+                Lista de Reservas
+            </h1>
+        </div>                                          
+        <div class="flex justify-center mb-4">
             <a href="{{ route('reservations.create') }}"
                 class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Nueva Reserva</a>
         </div>
 
-        <div class="bg-white shadow-md rounded-lg overflow-hidden">
+        <div class="bg-blue-50 shadow-lg rounded-lg overflow-hidden">
             <table class="min-w-full table-auto">
-                <thead class="bg-gray-300">
+                <thead class="bg-blue-600 text-white">
                     <tr>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID
-                        </th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            Estado</th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            Cantidad de Ubicaciones</th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            Evento ID</th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            Usuario ID</th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            Acciones</th>
+                        <th class="px-6 py-3 text-center text-base font-semibold uppercase tracking-wider">ID</th>
+                        <th class="px-6 py-3 text-center text-base font-semibold uppercase tracking-wider">Estado</th>
+                        <th class="px-6 py-3 text-center text-base font-semibold uppercase tracking-wider">Cantidad de Ubicaciones</th>
+                        <th class="px-6 py-3 text-center text-base font-semibold uppercase tracking-wider">Evento ID</th>
+                        <th class="px-6 py-3 text-center text-base font-semibold uppercase tracking-wider">Usuario ID</th>
+                        <th class="px-6 py-3 text-center text-base font-semibold uppercase tracking-wider">Acciones</th>
                     </tr>
                 </thead>
-                <tbody class="bg-white divide-y divide-gray-200">
+                <tbody class="bg-blue-50 divide-y divide-gray-200">
                     @forelse($reservations as $reservation)
-                        <tr>
-                            <td class="px-6 py-4 whitespace-nowrap">{{ $reservation->id }}</td>
-                            <td class="px-6 py-4 whitespace-nowrap">{{ $reservation->status ? 'Activa' : 'Cancelada' }}
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap">{{ $reservation->location_quantity }}</td>
-                            <td class="px-6 py-4 whitespace-nowrap">{{ $reservation->event_id }}</td>
-                            <td class="px-6 py-4 whitespace-nowrap">{{ $reservation->user_id }}</td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <a href="{{ route('reservations.show', $reservation->id) }}"
-                                    class="text-blue-600 hover:text-blue-800">Detalles</a>
-                                <a href="{{ route('reservations.edit', $reservation->id) }}"
-                                    class="text-indigo-600 hover:text-indigo-800 ml-4">Editar</a>
-                                <form action="{{ route('reservations.destroy', $reservation->id) }}" method="POST"
-                                    class="inline-block ml-4">
+                        <tr class="hover:bg-blue-100">
+                            <td class="px-6 py-4 text-center text-base text-gray-900">{{ $reservation->id }}</td>
+                            <td class="px-6 py-4 text-center text-base text-gray-900">{{ $reservation->status ? 'Activa' : 'Cancelada' }}</td>
+                            <td class="px-6 py-4 text-center text-base text-gray-900">{{ $reservation->location_quantity }}</td>
+                            <td class="px-6 py-4 text-center text-base text-gray-900">{{ $reservation->event_id }}</td>
+                            <td class="px-6 py-4 text-center text-base text-gray-900">{{ $reservation->user_id }}</td>
+                            <td class="px-6 py-4 text-center text-base font-medium">
+                                <!-- Botón de detalles -->
+                                <a href="{{ route('reservations.show', $reservation->id) }}" 
+                                    class="inline-block bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75 transition">
+                                    Detalles
+                                </a>
+
+                                <!-- Botón de editar -->
+                                <a href="{{ route('reservations.edit', $reservation->id) }}" 
+                                    class="inline-block bg-indigo-500 text-white px-4 py-2 rounded-lg hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-opacity-75 transition">
+                                    Editar
+                                </a>
+
+                                <!-- Formulario de eliminación -->
+                                <form action="{{ route('reservations.destroy', $reservation->id) }}" method="POST" class="inline-block">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="text-red-600 hover:text-red-800">Eliminar</button>
+                                    <button type="submit" 
+                                        class="inline-block bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-opacity-75 transition">
+                                        Eliminar
+                                    </button>
                                 </form>
                             </td>
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="6" class="px-6 py-4 whitespace-nowrap text-center text-gray-500">No hay
-                                reservas disponibles.</td>
+                            <td colspan="6" class="px-6 py-4 text-center text-gray-500">No hay reservas disponibles.</td>
                         </tr>
                     @endforelse
                 </tbody>

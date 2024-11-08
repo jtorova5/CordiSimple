@@ -47,8 +47,9 @@ class ReservationController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Reservation $reservation)
+    public function show(string $id)
     {
+        $reservation = Reservation::findOrFail($id);
         return view('reservations.show', compact('reservation'));
     }
 
@@ -57,13 +58,14 @@ class ReservationController extends Controller
      */
     public function edit(string $id)
     {
+        $reservation = Reservation::findOrFail($id);
         return view('reservations.edit', compact('reservation'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Reservation $reservation)
+    public function update(Request $request, $id)
     {
         // Validar los datos de la solicitud
         $validatedData = $request->validate([
@@ -73,16 +75,24 @@ class ReservationController extends Controller
             'user_id' => 'nullable|exists:users,id',
         ]);
 
+        $reservation = Reservation::find($id);
+
+        if (!$reservation) {
+            return redirect()->route('reservations.index')->with('error', 'Reserva no encontrada.');
+        }
+
         // Actualizar la reserva
         $reservation->update($validatedData);
+
         return redirect()->route('reservations.index')->with('success', 'Reserva actualizada con éxito.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Reservation $reservation)
+    public function destroy($id)
     {
+        $reservation = Reservation::findOrFail($id);
         $reservation->delete();
         return redirect()->route('reservations.index')->with('success', 'Reserva eliminada con éxito.');
     }

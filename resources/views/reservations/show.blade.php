@@ -43,7 +43,7 @@
                     <a href="{{ route('reservations.index') }}"
                         class="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600 mr-2">Volver a la lista</a>
                     <a href="{{ route('reservations.edit', $reservation->id) }}"
-                        class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Editar Reserva</a>
+                        class="text-indigo-600 hover:text-indigo-800 ml-4">Editar</a>
                 </div>
             </div>
         </div>

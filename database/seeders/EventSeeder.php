@@ -19,7 +19,7 @@ class EventSeeder extends Seeder
                 'date' => '2024-11-10',
                 'location' => 'Estadio Municipal',
                 'max_capacity' => 5000,
-                'sold' => 1500,
+                'sold' => 0,
                 'admin_id' => 1
             ],
             [
@@ -28,7 +28,7 @@ class EventSeeder extends Seeder
                 'date' => '2024-12-05',
                 'location' => 'Parque Central',
                 'max_capacity' => 3000,
-                'sold' => 1200,
+                'sold' => 0,
                 'admin_id' => 1
             ],
             [
@@ -37,7 +37,7 @@ class EventSeeder extends Seeder
                 'date' => '2024-11-20',
                 'location' => 'Centro Cultural',
                 'max_capacity' => 200,
-                'sold' => 50,
+                'sold' => 0,
                 'admin_id' => 2
             ],
             [
@@ -46,7 +46,7 @@ class EventSeeder extends Seeder
                 'date' => '2024-12-15',
                 'location' => 'Auditorio Principal',
                 'max_capacity' => 1000,
-                'sold' => 800,
+                'sold' => 0,
                 'admin_id' => 3
             ],
             [
@@ -55,7 +55,7 @@ class EventSeeder extends Seeder
                 'date' => '2024-11-25',
                 'location' => 'Avenida Principal',
                 'max_capacity' => 2000,
-                'sold' => 1800,
+                'sold' => 0,
                 'admin_id' => 2,
             ],
         ];

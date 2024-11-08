@@ -9,10 +9,11 @@ use Illuminate\Support\Facades\Route;
 // Ruta de bienvenida
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('welcome');
+
 
 // Rutas públicas para el login
-Route::get('login', [AuthenticatedSessionController::class, 'showLoginForm'])->name('login');
+Route::get('login', [AuthenticatedSessionController::class, 'create'])->name('login');
 Route::post('login', [AuthenticatedSessionController::class, 'login']); // Procesa el login
 
 // Ruta para logout

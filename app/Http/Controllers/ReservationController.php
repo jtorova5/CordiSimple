@@ -17,6 +17,12 @@ class ReservationController extends Controller
         return view('reservations.index', compact('reservations'));
     }
 
+    public function indexUser()
+    {
+        $reservations = Reservation::all();
+        return view('reservations.indexUser', compact('reservations'));
+    }
+    
     /**
      * Show the form for creating a new resource.
      */

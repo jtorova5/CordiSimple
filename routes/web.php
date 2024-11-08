@@ -35,6 +35,7 @@ Route::put('events/{id}', [EventController::class, 'update'])->name('events.upda
 Route::delete('events/{id}', [EventController::class, 'destroy'])->name('events.destroy');
 
 Route::get('reservations', [ReservationController::class, 'index'])->name('reservations.index');
+Route::get('reservations/indexUser', [ReservationController::class, 'indexUser'])->name('reservations.indexUser');
 Route::get('reservations/create', [ReservationController::class, 'create'])->name('reservations.create');
 Route::post('reservations', [ReservationController::class, 'store'])->name('reservations.store');
 Route::get('reservations/{id}', [ReservationController::class, 'show'])->name('reservations.show');

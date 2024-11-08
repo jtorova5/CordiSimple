@@ -36,6 +36,10 @@ class Event extends Model
     | FUNCTIONS
     |--------------------------------------------------------------------------
     */
+    public function reservations()
+    {
+        return $this->hasMany(Reservation::class, 'event_id');
+    }
 
     /*
     |--------------------------------------------------------------------------

@@ -19,9 +19,14 @@ class ReservationController extends Controller
 
     public function indexUser()
     {
-        // Listar todas las reservas con los eventos y usuarios relacionados (Eager Loading)
-        $reservations = Reservation::with(['event', 'user'])->get();
-        return view('reservations.indexUser', compact('reservations'));
+           // Obtener el usuario logueado
+           $userId = auth()->id();
+
+           // Obtener las reservas del usuario logueado
+           $reservations = Reservation::where('user_id', $userId)->get();
+   
+           // Pasar las reservas a la vista
+           return view('reservations.indexUser', compact('reservations'));
     }
 
     /**

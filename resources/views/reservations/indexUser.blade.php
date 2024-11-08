@@ -25,8 +25,8 @@
                         <th class="px-6 py-3 text-center text-base font-semibold uppercase tracking-wider">ID</th>
                         <th class="px-6 py-3 text-center text-base font-semibold uppercase tracking-wider">Estado</th>
                         <th class="px-6 py-3 text-center text-base font-semibold uppercase tracking-wider">Cantidad de Ubicaciones</th>
-                        <th class="px-6 py-3 text-center text-base font-semibold uppercase tracking-wider">Evento ID</th>
-                        <th class="px-6 py-3 text-center text-base font-semibold uppercase tracking-wider">Usuario ID</th>
+                        <th class="px-6 py-3 text-center text-base font-semibold uppercase tracking-wider">Evento</th>
+                        <th class="px-6 py-3 text-center text-base font-semibold uppercase tracking-wider">Usuario</th>
                         <th class="px-6 py-3 text-center text-base font-semibold uppercase tracking-wider">Acciones</th>
                     </tr>
                 </thead>
@@ -36,8 +36,10 @@
                             <td class="px-6 py-4 text-center text-base text-gray-900">{{ $reservation->id }}</td>
                             <td class="px-6 py-4 text-center text-base text-gray-900">{{ $reservation->status ? 'Activa' : 'Cancelada' }}</td>
                             <td class="px-6 py-4 text-center text-base text-gray-900">{{ $reservation->location_quantity }}</td>
-                            <td class="px-6 py-4 text-center text-base text-gray-900">{{ $reservation->event_id }}</td>
-                            <td class="px-6 py-4 text-center text-base text-gray-900">{{ $reservation->user_id }}</td>
+                            <!-- Mostrar el nombre del evento -->
+                            <td class="px-6 py-4 text-center text-base text-gray-900">{{ $reservation->event->name ?? 'Evento no disponible' }}</td>
+                            <!-- Mostrar el nombre completo del usuario -->
+                            <td class="px-6 py-4 text-center text-base text-gray-900">{{ $reservation->user->name ?? 'Usuario no disponible' }} {{ $reservation->user->last_name ?? '' }}</td>
                             <td class="px-6 py-4 text-center text-base font-medium">
                                 <!-- Botón de detalles -->
                                 <a href="{{ route('reservations.show', $reservation->id) }}" 

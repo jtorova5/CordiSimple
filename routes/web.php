@@ -3,6 +3,7 @@
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReservationController;
+use App\Http\Controllers\PublicEventController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use Illuminate\Support\Facades\Route;
 
@@ -55,5 +56,16 @@ Route::middleware(['auth:admin'])->group(function () {
     Route::put('/events/{id}', [EventController::class, 'update'])->name('events.update');
     Route::delete('/events/{id}', [EventController::class, 'destroy'])->name('events.destroy');
 });
+
+// Ruta para mostrar todos los eventos públicos
+Route::get('/user/events', [PublicEventController::class, 'index'])->name('public.events.index');
+
+// Ruta para ver detalles de un evento específico
+Route::get('/user/events/{id}', [PublicEventController::class, 'show'])->name('public.events.show');
+
+// Ruta para comprar entradas de un evento (requiere autenticación)
+Route::post('/user/events/{id}/purchase', [PublicEventController::class, 'purchase'])
+    ->name('public.events.purchase')
+    ->middleware('auth');
 
 require __DIR__ . '/auth.php';

@@ -14,7 +14,8 @@ class PublicEventController extends Controller
      */
     public function index()
     {
-        $events = Event::where('date', '>=', now())->get();
+        $events = Event::where('date', '>=', now())->where('sold', '<=', 'max_capacity')->get();
+
         return view('userEvents.index', compact('events'));
     }
 
@@ -34,29 +35,29 @@ class PublicEventController extends Controller
     {
         $event = Event::findOrFail($id);
 
-        // Validación de la cantidad de entradas
+        // Validar la cantidad de entradas
         $request->validate([
             'quantity' => 'required|integer|min:1|max:' . ($event->max_capacity - $event->sold),
         ]);
 
-        // Verifica la disponibilidad de entradas
         $quantity = $request->input('quantity');
-        if ($quantity > ($event->max_capacity - $event->sold)) {
-            return back()->with('error', 'No hay suficientes entradas disponibles.');
+
+        if ($quantity > $event->max_capacity - $event->sold) {
+            return response()->json(['error' => 'No hay suficientes entradas disponibles.'], 400);
         }
 
-        // Crea una reserva
+        // Crear la reserva
         $reservation = Reservation::create([
-            'status' => 'confirmed',
+            'status' => 'Activa',
             'location_quantity' => $quantity,
             'event_id' => $event->id,
             'user_id' => Auth::id(),
         ]);
 
-        // Actualiza el número de entradas vendidas del evento
+        // Actualizar el número de entradas vendidas
         $event->sold += $quantity;
         $event->save();
 
-        return back()->with('success', 'Entradas adquiridas con éxito.');
+        return response()->json(['message' => 'Entradas adquiridas con éxito.'], 200);
     }
 }

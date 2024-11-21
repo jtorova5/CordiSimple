@@ -12,7 +12,7 @@ class Reservation extends Model
     |--------------------------------------------------------------------------
     */
 
-    // protected $table = 'reservations';
+    protected $table = 'reservations';
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     // protected $guarded = [];

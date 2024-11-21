@@ -24,7 +24,6 @@ class User extends Authenticatable
         'password',
         'address',
         'phone_number',
-        // Otros campos...
     ];
 
     // protected $hidden = [

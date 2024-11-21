@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Reservation extends Model
 {
-        /*
+    /*
     |--------------------------------------------------------------------------
     | GLOBAL VARIABLES
     |--------------------------------------------------------------------------
@@ -38,10 +38,17 @@ class Reservation extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
-        public function reservation()
-        {
-            return $this->belongsTo(Reservation::class);
-        }
+    // Relación con Evento
+    public function event()
+    {
+        return $this->belongsTo(Event::class, 'event_id');  // Cambié 'evento_id' por 'event_id'
+    }
+
+    // Relación con Usuario
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
     /*
     |--------------------------------------------------------------------------
     | SCOPES

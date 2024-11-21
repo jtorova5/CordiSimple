@@ -12,9 +12,21 @@ class ReservationController extends Controller
      */
     public function index()
     {
-        // Listar todas las reservas
-        $reservations = Reservation::all();
+        // Listar todas las reservas con los eventos y usuarios relacionados (Eager Loading)
+        $reservations = Reservation::with(['event', 'user'])->get();
         return view('reservations.index', compact('reservations'));
+    }
+
+    public function indexUser()
+    {
+           // Obtener el usuario logueado
+           $userId = auth()->id();
+
+           // Obtener las reservas del usuario logueado
+           $reservations = Reservation::where('user_id', $userId)->get();
+   
+           // Pasar las reservas a la vista
+           return view('reservations.indexUser', compact('reservations'));
     }
 
     /**
@@ -39,7 +51,7 @@ class ReservationController extends Controller
             'user_id' => 'nullable|exists:users,id',
         ]);
 
-        // Crear una nueva reserva
+        // Crear una nueva reserva con los datos validados
         $reservation = Reservation::create($validatedData);
         return redirect()->route('reservations.index')->with('success', 'Reserva creada con éxito.');
     }
@@ -49,7 +61,8 @@ class ReservationController extends Controller
      */
     public function show(string $id)
     {
-        $reservation = Reservation::findOrFail($id);
+        // Obtener una reserva específica con su evento y usuario relacionados (Eager Loading)
+        $reservation = Reservation::with(['event', 'user'])->findOrFail($id);
         return view('reservations.show', compact('reservation'));
     }
 
@@ -58,6 +71,7 @@ class ReservationController extends Controller
      */
     public function edit(string $id)
     {
+        // Obtener la reserva que se quiere editar
         $reservation = Reservation::findOrFail($id);
         return view('reservations.edit', compact('reservation'));
     }
@@ -75,6 +89,7 @@ class ReservationController extends Controller
             'user_id' => 'nullable|exists:users,id',
         ]);
 
+        // Obtener la reserva a actualizar
         $reservation = Reservation::find($id);
 
         if (!$reservation) {
@@ -92,6 +107,7 @@ class ReservationController extends Controller
      */
     public function destroy($id)
     {
+        // Obtener la reserva a eliminar
         $reservation = Reservation::findOrFail($id);
         $reservation->delete();
         return redirect()->route('reservations.index')->with('success', 'Reserva eliminada con éxito.');
@@ -110,6 +126,7 @@ class ReservationController extends Controller
      */
     public function cancelReservation($id)
     {
+        // Obtener la reserva que se quiere cancelar
         $reservation = Reservation::findOrFail($id);
         $reservation->status = false; // O cualquier otra lógica de cancelación
         $reservation->save();
@@ -121,6 +138,7 @@ class ReservationController extends Controller
      */
     public function getReservation($id)
     {
+        // Obtener una reserva específica y devolverla como respuesta JSON
         $reservation = Reservation::findOrFail($id);
         return response()->json($reservation);
     }
@@ -130,6 +148,7 @@ class ReservationController extends Controller
      */
     public function deleteReservation($id)
     {
+        // Eliminar una reserva
         $reservation = Reservation::findOrFail($id);
         return $this->destroy($reservation);
     }

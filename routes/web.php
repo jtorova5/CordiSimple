@@ -37,6 +37,7 @@ Route::middleware('auth')->group(function () {
 Route::middleware(['auth:web'])->group(function () {
     // Reservas
     Route::get('reservations', [ReservationController::class, 'index'])->name('reservations.index');
+    Route::get('reservations/indexUser', [ReservationController::class, 'indexUser'])->name('reservations.indexUser');
     Route::get('reservations/create', [ReservationController::class, 'create'])->name('reservations.create');
     Route::post('reservations', [ReservationController::class, 'store'])->name('reservations.store');
     Route::get('reservations/{id}', [ReservationController::class, 'show'])->name('reservations.show');
@@ -48,13 +49,13 @@ Route::middleware(['auth:web'])->group(function () {
 // Rutas para administradores (Admin)
 Route::middleware(['auth:admin'])->group(function () {
     // Eventos
-    Route::get('/events', [EventController::class, 'index'])->name('events.index');
-    Route::get('/events/create', [EventController::class, 'create'])->name('events.create');
-    Route::post('/events', [EventController::class, 'store'])->name('events.store');
-    Route::get('/events/{id}', [EventController::class, 'show'])->name('events.show');
-    Route::get('/events/{id}/edit', [EventController::class, 'edit'])->name('events.edit');
-    Route::put('/events/{id}', [EventController::class, 'update'])->name('events.update');
-    Route::delete('/events/{id}', [EventController::class, 'destroy'])->name('events.destroy');
+    Route::get('events', [EventController::class, 'index'])->name('events.index');
+    Route::get('events/create', [EventController::class, 'create'])->name('events.create');
+    Route::post('events', [EventController::class, 'store'])->name('events.store');
+    Route::get('events/{id}', [EventController::class, 'show'])->name('events.show');
+    Route::get('events/{id}/edit', [EventController::class, 'edit'])->name('events.edit');
+    Route::put('events/{id}', [EventController::class, 'update'])->name('events.update');
+    Route::delete('events/{id}', [EventController::class, 'destroy'])->name('events.destroy');
 });
 
 // Ruta para mostrar todos los eventos públicos

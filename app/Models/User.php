@@ -24,7 +24,6 @@ class User extends Authenticatable
         'password',
         'address',
         'phone_number',
-        // Otros campos...
     ];
 
     // protected $hidden = [
@@ -36,6 +35,10 @@ class User extends Authenticatable
     | FUNCTIONS
     |--------------------------------------------------------------------------
     */
+    public function reservations()
+    {
+        return $this->hasMany(Reservation::class, 'user_id');
+    }
 
     /*
     |--------------------------------------------------------------------------
@@ -54,7 +57,7 @@ class User extends Authenticatable
     | ACCESORS
     |--------------------------------------------------------------------------
     */
-    
+
     /*
     |--------------------------------------------------------------------------
     | MUTATORS

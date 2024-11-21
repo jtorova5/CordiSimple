@@ -12,10 +12,10 @@ class Event extends Model
     |--------------------------------------------------------------------------
     */
 
-    // protected $table = 'events';
-    // protected $primaryKey = 'id';
-    // public $timestamps = false;
-    // protected $guarded = [];
+    protected $table = 'events';
+    protected $primaryKey = 'id';
+    public $timestamps = false;
+    protected $guarded = [];
     protected $fillable = [
         'name',
         'description',
@@ -24,7 +24,6 @@ class Event extends Model
         'max_capacity',
         'sold',
         'admin_id',
-        // Otros campos...
     ];
 
     // protected $hidden = [
@@ -36,6 +35,10 @@ class Event extends Model
     | FUNCTIONS
     |--------------------------------------------------------------------------
     */
+    public function reservations()
+    {
+        return $this->hasMany(Reservation::class, 'event_id');
+    }
 
     /*
     |--------------------------------------------------------------------------

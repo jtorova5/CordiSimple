@@ -8,6 +8,9 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
@@ -143,7 +146,7 @@
 </head>
 
 <body class="dashboard">
-    <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white dark:bg-gray-800 shadow-md overflow-hidden sm:rounded-lg">
+    <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-gray-500 shadow-md overflow-hidden sm:rounded-lg">
         @if (Route::has('welcome'))
             <a href="{{ route('welcome') }}" class="block text-center mb-6">
                 <img src="{{ asset('img/logo.webp') }}" alt="CordiSimple" class="img-logo inline-block">

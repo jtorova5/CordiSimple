@@ -1,3 +1,55 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+input[type="email"],
+input[type="password"],
+input[type="checkbox"] {
+    background-color: #1a202c;
+    color: #ffffff; 
+    border: 1px solid #2d3748; 
+    border-radius: 0.375rem; 
+    padding: 0.5rem; 
+}
+
+input[type="email"]:focus,
+input[type="password"]:focus,
+input[type="checkbox"]:focus {
+    border-color: #30D5C8; 
+    outline: none;
+}
+
+
+label {
+    color: #000000; 
+}
+
+
+.x-input-error {
+    color: #ff0000;
+    font-size: 0.875rem; 
+}
+
+
+a {
+    color: #000000; 
+    text-decoration: none;
+}
+
+a:hover {
+    color: #2d3748; 
+}
+
+
+.x-primary-button {
+    background-color: #30D5C8; 
+    color: #1a202c; 
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 9999px; 
+    transition: background-color 0.3s ease;
+}
+
+.x-primary-button:hover {
+    background-color: #28c4b4; 
+}

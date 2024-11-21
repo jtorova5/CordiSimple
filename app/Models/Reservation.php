@@ -21,7 +21,6 @@ class Reservation extends Model
         'location_quantity',
         'event_id',
         'user_id'
-        // Otros campos...
     ];
 
     // protected $hidden = [

@@ -63,7 +63,7 @@
 
         function purchaseTickets() {
             const quantity = document.getElementById('ticketQuantity').value;
-            fetch(`/events/public/${window.currentEventId}/purchase`, {
+            fetch(`/user/events/${window.currentEventId}/purchase`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

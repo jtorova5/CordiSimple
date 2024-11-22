@@ -1,7 +1,7 @@
 # <div align="center">CordiSimple
 </div>
 
-<div align="center"><img src="https://drive.google.com/file/d/1qaGBYMfnv_91qQO5t7-CjFWwgr3bpqz9/view?usp=sharing" alt="Image Description" width="300"></div>
+<div align="center"><img src="https://drive.google.com/file/d/1qaGBYMfnv_91qQO5t7-CjFWwgr3bpqz9/view?usp=drive_link" alt="Image Description" width="300"></div>
 
 <p align="justify">This practice project is designed to manage events, facilitating an effective booking and purchase of tickets.</p>
 

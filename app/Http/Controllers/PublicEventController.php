@@ -15,7 +15,6 @@ class PublicEventController extends Controller
     public function index()
     {
         $events = Event::where('date', '>=', now())->where('sold', '<=', 'max_capacity')->get();
-
         return view('userEvents.index', compact('events'));
     }
 
@@ -33,31 +32,45 @@ class PublicEventController extends Controller
      */
     public function purchase(Request $request, $id)
     {
-        $event = Event::findOrFail($id);
+        try {
+            $event = Event::findOrFail($id);
 
-        // Validar la cantidad de entradas
-        $request->validate([
-            'quantity' => 'required|integer|min:1|max:' . ($event->max_capacity - $event->sold),
-        ]);
+            // Validate ticket quantity
+            $request->validate([
+                'quantity' => 'required|integer|min:1|max:' . ($event->max_capacity - $event->sold),
+            ]);
 
-        $quantity = $request->input('quantity');
+            $quantity = $request->input('quantity');
 
-        if ($quantity > $event->max_capacity - $event->sold) {
-            return response()->json(['error' => 'No hay suficientes entradas disponibles.'], 400);
+            \DB::beginTransaction();
+
+            try {
+                $event = Event::lockForUpdate()->findOrFail($id);
+
+                if ($quantity > $event->max_capacity - $event->sold) {
+                    \DB::rollBack();
+                    return response()->json(['error' => 'No hay suficientes entradas disponibles.'], 400);
+                }
+
+                // Create reservation
+                $reservation = Reservation::create([
+                    'status' => 1,
+                    'location_quantity' => $quantity,
+                    'event_id' => $event->id,
+                    'user_id' => Auth::id(),
+                ]);
+
+                $event->sold += $quantity;
+                $event->save();
+
+                \DB::commit();
+                return response()->json(['message' => 'Entradas adquiridas con éxito.'], 200);
+            } catch (\Exception $e) {
+                \DB::rollBack();
+                throw $e;
+            }
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Error al procesar la compra: ' . $e->getMessage()], 500);
         }
-
-        // Crear la reserva
-        $reservation = Reservation::create([
-            'status' => 'Activa',
-            'location_quantity' => $quantity,
-            'event_id' => $event->id,
-            'user_id' => Auth::id(),
-        ]);
-
-        // Actualizar el número de entradas vendidas
-        $event->sold += $quantity;
-        $event->save();
-
-        return response()->json(['message' => 'Entradas adquiridas con éxito.'], 200);
     }
 }

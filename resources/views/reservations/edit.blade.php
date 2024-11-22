@@ -33,24 +33,36 @@
                 </div>
 
                 <div class="mb-4">
-                    <label for="event_id" class="block text-gray-700 font-bold mb-2">Evento ID (opcional):</label>
-                    <input type="number" name="event_id" id="event_id"
-                        class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500"
-                        value="{{ old('event_id', $reservation->event_id) }}"
-                        placeholder="Escribe el ID del evento (opcional)">
+                    <label for="event_id" class="block text-gray-700 font-bold mb-2">Evento:</label>
+                    <select name="event_id" id="event_id"
+                    class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500">
+                        <option value="">Selecciona un evento</option>
+                        @foreach($events as $event)
+                        <option value="{{ $event->id }}"
+                        {{ old('event_id', $reservation->event_id) == $event->id ? 'selected' : '' }}>
+                        {{ $event->name }} ({{ $event->date }})
+                        </option>
+                        @endforeach
+                    </select>
                     @error('event_id')
-                        <span class="text-red-500 text-sm">{{ $message }}</span>
+                    <span class="text-red-500 text-sm">{{ $message }}</span>
                     @enderror
                 </div>
 
                 <div class="mb-4">
-                    <label for="user_id" class="block text-gray-700 font-bold mb-2">Usuario ID (opcional):</label>
-                    <input type="number" name="user_id" id="user_id"
-                        class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500"
-                        value="{{ old('user_id', $reservation->user_id) }}"
-                        placeholder="Escribe el ID del usuario (opcional)">
+                    <label for="user_id" class="block text-gray-700 font-bold mb-2">Usuario:</label>
+                    <select name="user_id" id="user_id"
+                    class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500">
+                        <option value="">Selecciona un usuario</option>
+                        @foreach($users as $user)
+                        <option value="{{ $user->id }}"
+                        {{ old('user_id', $reservation->user_id) == $user->id ? 'selected' : '' }}>
+                        {{ $user->name }} ({{ $user->email }})
+                        </option>
+                        @endforeach
+                    </select>
                     @error('user_id')
-                        <span class="text-red-500 text-sm">{{ $message }}</span>
+                    <span class="text-red-500 text-sm">{{ $message }}</span>
                     @enderror
                 </div>
 

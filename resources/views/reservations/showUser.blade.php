@@ -16,13 +16,13 @@
                 </div>
 
                 <div class="mb-4">
-                    <h3 class="text-xl font-bold text-gray-700 mb-2">Evento ID:</h3>
-                    <p class="text-gray-600 text-lg">{{ $reservation->event_id ?? 'No asignado' }}</p>
+                    <h3 class="text-xl font-bold text-gray-700 mb-2">Evento:</h3>
+                    <p class="text-gray-600 text-lg">{{ $reservation->event->name ?? 'No asignado' }}</p>
                 </div>
 
                 <div class="mb-4">
-                    <h3 class="text-xl font-bold text-gray-700 mb-2">Usuario ID:</h3>
-                    <p class="text-gray-600 text-lg">{{ $reservation->user_id ?? 'No asignado' }}</p>
+                    <h3 class="text-xl font-bold text-gray-700 mb-2">Usuario:</h3>
+                    <p class="text-gray-600 text-lg">{{ $reservation->user->name ?? 'No asignado' }} {{ $reservation->user->last_name ?? '' }}</p>
                 </div>
 
                 <div class="mb-4">
@@ -40,9 +40,8 @@
                 </div>
 
                 <div class="flex justify-end mt-6">
-                    <a href="{{ route('reservations.index') }}"
-                        class="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600 mr-2">Volver a la lista
-                    </a>
+                    <a href="{{ route('reservations.indexUser') }}"
+                        class="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600 mr-2">Volver a la lista</a>
                 </div>
             </div>
         </div>

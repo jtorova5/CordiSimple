@@ -44,7 +44,7 @@ class AuthenticatedSessionController extends Controller
         if ($user && Hash::check($request->password, $user->password)) {
             // Iniciar sesión como user y redirigir a su dashboard
             Auth::guard('web')->login($user);
-            return redirect()->route('reservations.index'); // Redirigir a reservas para usuarios
+            return redirect()->route('public.events.index'); // Redirigir a reservas para usuarios
         }
 
         // Si no se encontró el usuario o las credenciales no coinciden

@@ -42,7 +42,7 @@
                             <td class="px-6 py-4 text-center text-base text-gray-900">{{ $reservation->user->name ?? 'Usuario no disponible' }} {{ $reservation->user->last_name ?? '' }}</td>
                             <td class="px-6 py-4 text-center text-base font-medium">
                                 <!-- Botón de detalles -->
-                                <a href="{{ route('reservations.show', $reservation->id) }}" 
+                                <a href="{{ route('reservations.showUser', $reservation->id) }}" 
                                     class="inline-block bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75 transition">
                                     Detalles
                                 </a>

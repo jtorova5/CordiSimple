@@ -16,7 +16,15 @@
     </head>
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
-            @include('layouts.navigation')
+            <!-- Condicional para cargar la navegación correcta -->
+            @if(Auth::guard('admin')->check())
+                @include('layouts.navigation') <!-- Vista para administradores -->
+            @elseif(Auth::guard('web')->check())
+                @include('layouts.navigationUser') <!-- Vista para usuarios -->
+            @else
+                <!-- Opcional: manejo para invitados -->
+                @include('layouts.guest') <!-- Por ejemplo, un diseño para invitados -->
+            @endif
 
             <!-- Page Heading -->
             @isset($header)

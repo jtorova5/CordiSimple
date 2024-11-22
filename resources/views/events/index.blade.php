@@ -33,7 +33,6 @@
                         <p class="text-gray-600 mb-2"><strong>Administrador ID:</strong> {{ $event->admin_id }}</p>
                     </div>
                     <div class="px-6 py-4 bg-gray-100 flex justify-between items-center">
-                        <a href="{{ route('events.show', $event->id) }}" class="text-blue-600 hover:text-blue-800">Detalles</a>
                         <!-- Botón para abrir modal de edición -->
                         <button onclick="openEditModal({{ $event }})"
                                 class="text-indigo-600 hover:text-indigo-800">Editar</button>

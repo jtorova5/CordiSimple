@@ -36,12 +36,12 @@ Route::middleware('auth')->group(function () {
 // Rutas para usuarios regulares (User)
 Route::middleware(['auth:web'])->group(function () {
     // Reservas
-    Route::get('reservations/create', [ReservationController::class, 'create'])->name('reservations.create');
-    Route::get('reservations/indexUser', [ReservationController::class, 'indexUser'])->name('reservations.indexUser');
-    Route::get('/reservations/{reservation}', [ReservationController::class, 'show'])->name('reservations.showUser');
-    Route::get('reservations/{id}/edit', [ReservationController::class, 'edit'])->name('reservations.edit');
-    Route::put('reservations/{id}', [ReservationController::class, 'update'])->name('reservations.update');
-    Route::delete('reservations/{id}', [ReservationController::class, 'destroy'])->name('reservations.destroy');
+    Route::get('reservations/create', [ReservationUserController::class, 'create'])->name('reservations.create');
+    Route::get('reservations/indexUser', [ReservationUserController::class, 'indexUser'])->name('reservations.indexUser');
+    // Route::get('/reservations/{reservation}', [ReservationUserController::class, 'showUser'])->name('reservations.showUser');
+    Route::get('reservations/{id}/edit', [ReservationUserController::class, 'edit'])->name('reservations.edit');
+    Route::put('reservations/{id}', [ReservationUserController::class, 'update'])->name('reservations.update');
+    Route::delete('reservations/{id}', [ReservationUserController::class, 'destroy'])->name('reservations.destroy');
     
     // Eventos
     Route::get('events/user', [PublicEventController::class, 'index'])->name('public.events.index');

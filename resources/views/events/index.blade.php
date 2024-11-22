@@ -30,7 +30,7 @@
                         <p class="text-gray-600 mb-2"><strong>Ubicación:</strong> {{ $event->location }}</p>
                         <p class="text-gray-600 mb-2"><strong>Capacidad Máxima:</strong> {{ $event->max_capacity }}</p>
                         <p class="text-gray-600 mb-2"><strong>Vendidos:</strong> {{ $event->sold }}</p>
-                        <p class="text-gray-600 mb-2"><strong>Administrador ID:</strong> {{ $event->admin_id }}</p>
+                        <p class="text-gray-600 mb-2"><strong>Administrador ID:</strong> {{ Auth::id() }}</p>
                     </div>
                     <div class="px-6 py-4 bg-gray-100 flex justify-between items-center">
                         <!-- Botón para abrir modal de edición -->

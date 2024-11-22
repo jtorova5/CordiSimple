@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Reservation;
-use App\Models\Event;
-use App\Models\User;
 use Illuminate\Http\Request;
 
 class ReservationController extends Controller
@@ -19,27 +17,14 @@ class ReservationController extends Controller
         return view('reservations.index', compact('reservations'));
     }
 
-    public function indexUser()
-    {
-        // Obtener el usuario logueado
-        $userId = auth()->id();
-
-        // Obtener las reservas del usuario logueado
-        $reservations = Reservation::where('user_id', $userId)->get();
-
-        // Pasar las reservas a la vista
-        return view('reservations.indexUser', compact('reservations'));
-    }
-
     /**
      * Show the form for creating a new resource.
      */
     public function create()
-{
-    $events = Event::all();
-    $users = User::all(); 
-    return view('reservations.create', compact('events', 'users'));
-}
+    {
+        // Mostrar el formulario para crear una nueva reserva
+        return view('reservations.create');
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -62,24 +47,22 @@ class ReservationController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show($id)
-{
-    // Utiliza eager loading para cargar las relaciones
-    $reservation = Reservation::with(['event', 'user'])->findOrFail($id);
-    return view('reservations.show', compact('reservation'));
-}
-    
+    public function show(string $id)
+    {
+        // Obtener una reserva específica con su evento y usuario relacionados (Eager Loading)
+        $reservation = Reservation::with(['event', 'user'])->findOrFail($id);
+        return view('reservations.show', compact('reservation'));
+    }
+
     /**
      * Show the form for editing the specified resource.
      */
     public function edit(string $id)
-{
-    // Obtener la reserva que se quiere editar
-    $reservation = Reservation::findOrFail($id);
-    $events = Event::all();
-    $users = User::all();
-    return view('reservations.edit', compact('reservation', 'events', 'users'));
-}
+    {
+        // Obtener la reserva que se quiere editar
+        $reservation = Reservation::findOrFail($id);
+        return view('reservations.edit', compact('reservation'));
+    }
 
     /**
      * Update the specified resource in storage.
@@ -111,20 +94,12 @@ class ReservationController extends Controller
      * Remove the specified resource from storage.
      */
     public function destroy($id)
-{
-    // Obtener la reserva a eliminar
-    $reservation = Reservation::findOrFail($id);
-    
-    // Revert the sold quantity back to the event
-    $event = Event::findOrFail($reservation->event_id);
-    $event->sold -= $reservation->location_quantity;
-    $event->save();
-    
-    // Eliminar la reserva
-    $reservation->delete();
-    
-    return redirect()->route('reservations.index')->with('success', 'Reserva eliminada con éxito.');
-}
+    {
+        // Obtener la reserva a eliminar
+        $reservation = Reservation::findOrFail($id);
+        $reservation->delete();
+        return redirect()->route('reservations.index')->with('success', 'Reserva eliminada con éxito.');
+    }
 
     /**
      * Create a new reservation.

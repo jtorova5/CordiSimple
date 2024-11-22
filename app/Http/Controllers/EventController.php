@@ -40,9 +40,6 @@ class EventController extends Controller
         // Redirige al index con un mensaje de éxito
         return redirect()->route('events.index')->with('success', 'Evento creado con éxito.');
     }
-    
-
-
 
     /**
      * Display the specified resource.

@@ -97,43 +97,48 @@
         }
 
         function purchaseTickets() {
-            const quantity = document.getElementById('ticketQuantity').value;
+    const quantity = document.getElementById('ticketQuantity').value;
+    const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
-            if (!quantity || quantity <= 0) {
-                alert('Por favor, introduce una cantidad válida.');
-                return;
-            }
+    if (!quantity || quantity <= 0) {
+        alert('Por favor, introduce una cantidad válida.');
+        return;
+    }
 
-            fetch(`/user/events/${currentEventId}/purchase`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'X-CSRF-TOKEN': '{{ csrf_token() }}' // Protege contra ataques CSRF
-                    },
-                    body: JSON.stringify({
-                        quantity
-                    })
-                })
-                .then(response => {
-                    if (!response.ok) {
-                        return response.json().then(data => {
-                            throw data; // Lanza el error para manejarlo en el catch
-                        });
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    alert(data.message); // Muestra el mensaje de éxito
-                    closePopup(); // Cierra el modal
-                    location.reload(); // Recarga la página para reflejar los cambios
-                })
-                .catch(error => {
-                    if (error.error) {
-                        alert(error.error); // Muestra el mensaje de error enviado por el backend
-                    } else {
-                        alert('Hubo un problema al realizar la compra.');
-                    }
-                });
+    // Mostrar indicador de carga
+    const purchaseButton = document.querySelector('#purchasePopup button');
+    const originalText = purchaseButton.innerText;
+    purchaseButton.disabled = true;
+    purchaseButton.innerText = 'Procesando...';
+
+    fetch(`/user/events/${window.currentEventId}/purchase`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': csrfToken
+        },
+        body: JSON.stringify({
+            quantity: parseInt(quantity)
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.error) {
+            throw new Error(data.error);
         }
+        alert(data.message || 'Compra realizada con éxito');
+        closePopup();
+        location.reload();
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert(error.message || 'Hubo un problema al realizar la compra.');
+    })
+    .finally(() => {
+        // Restaurar el botón
+        purchaseButton.disabled = false;
+        purchaseButton.innerText = originalText;
+    });
+}
     </script>
 </x-app-layout>

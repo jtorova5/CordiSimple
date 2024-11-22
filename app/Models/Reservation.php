@@ -2,11 +2,9 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\Model;
 
-
-class User extends Authenticatable
+class Reservation extends Model
 {
     /*
     |--------------------------------------------------------------------------
@@ -14,16 +12,15 @@ class User extends Authenticatable
     |--------------------------------------------------------------------------
     */
 
-    // protected $table = 'users';
+    protected $table = 'reservations';
     // protected $primaryKey = 'id';
     // public $timestamps = false;
-    protected $guarded = ['web'];
+    // protected $guarded = [];
     protected $fillable = [
-        'name',
-        'email',
-        'password',
-        'address',
-        'phone_number',
+        'status',
+        'location_quantity',
+        'event_id',
+        'user_id'
     ];
 
     // protected $hidden = [
@@ -35,17 +32,23 @@ class User extends Authenticatable
     | FUNCTIONS
     |--------------------------------------------------------------------------
     */
-    public function reservations()
-    {
-        return $this->hasMany(Reservation::class, 'user_id');
-    }
 
     /*
     |--------------------------------------------------------------------------
     | RELATIONS
     |--------------------------------------------------------------------------
     */
+    // Relación con Evento
+    public function event()
+    {
+        return $this->belongsTo(Event::class, 'event_id');  // Cambié 'evento_id' por 'event_id'
+    }
 
+    // Relación con Usuario
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
     /*
     |--------------------------------------------------------------------------
     | SCOPES

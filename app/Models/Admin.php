@@ -2,28 +2,25 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-
-class User extends Authenticatable
-{
+class Admin extends Authenticatable
+{   
     /*
     |--------------------------------------------------------------------------
     | GLOBAL VARIABLES
     |--------------------------------------------------------------------------
     */
 
-    // protected $table = 'users';
+    // protected $table = 'admins';
     // protected $primaryKey = 'id';
     // public $timestamps = false;
-    protected $guarded = ['web'];
+    protected $guarded = ['admin'];
     protected $fillable = [
         'name',
         'email',
         'password',
-        'address',
-        'phone_number',
+        // Otros campos...
     ];
 
     // protected $hidden = [
@@ -35,10 +32,6 @@ class User extends Authenticatable
     | FUNCTIONS
     |--------------------------------------------------------------------------
     */
-    public function reservations()
-    {
-        return $this->hasMany(Reservation::class, 'user_id');
-    }
 
     /*
     |--------------------------------------------------------------------------
@@ -57,7 +50,7 @@ class User extends Authenticatable
     | ACCESORS
     |--------------------------------------------------------------------------
     */
-
+    
     /*
     |--------------------------------------------------------------------------
     | MUTATORS

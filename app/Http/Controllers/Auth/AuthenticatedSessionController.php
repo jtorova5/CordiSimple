@@ -3,10 +3,11 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Auth\LoginRequest;
-use Illuminate\Http\RedirectResponse;
+use App\Models\Admin;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\View\View;
 
 class AuthenticatedSessionController extends Controller
@@ -16,32 +17,54 @@ class AuthenticatedSessionController extends Controller
      */
     public function create(): View
     {
-        return view('auth.login');
+        return view('auth.login'); // Vista común de login
     }
 
     /**
      * Handle an incoming authentication request.
      */
-    public function store(LoginRequest $request): RedirectResponse
+    public function store(Request $request)
     {
-        $request->authenticate();
+        // Validar los datos de inicio de sesión
+        $request->validate([
+            'email' => ['required', 'string', 'email'],
+            'password' => ['required', 'string'],
+        ]);
 
-        $request->session()->regenerate();
+        // Verificar si el email pertenece a un Admin
+        $admin = Admin::where('email', $request->email)->first();
+        if ($admin && Hash::check($request->password, $admin->password)) {
+            // Iniciar sesión como admin y redirigir a su dashboard
+            Auth::guard('admin')->login($admin);
+            return redirect()->route('events.index'); // Redirigir a eventos para admins
+        }
 
-        return redirect()->intended(route('dashboard', absolute: false));
+        // Si no es Admin, verificar si es un User
+        $user = User::where('email', $request->email)->first();
+        if ($user && Hash::check($request->password, $user->password)) {
+            // Iniciar sesión como user y redirigir a su dashboard
+            Auth::guard('web')->login($user);
+            return redirect()->route('public.events.index'); // Redirigir a reservas para usuarios
+        }
+
+        // Si no se encontró el usuario o las credenciales no coinciden
+        return back()->withErrors(['email' => trans('auth.failed')]);
     }
 
     /**
      * Destroy an authenticated session.
      */
-    public function destroy(Request $request): RedirectResponse
+    public function destroy()
     {
+        // Logout para ambos tipos de usuario
         Auth::guard('web')->logout();
-
-        $request->session()->invalidate();
-
-        $request->session()->regenerateToken();
-
-        return redirect('/');
+        Auth::guard('admin')->logout();
+        return redirect()->route('welcome'); // Redirigir al dashboard después de cerrar sesión
     }
 }
+
+
+
+
+
+// holaaaaaaaaa hasta aqui
